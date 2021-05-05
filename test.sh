@@ -5,3 +5,4 @@ make printf
 diff -a --suppress-common-lines ft_printf.txt printf.txt
 make clean
 rm ft_printf.txt printf.txt
+echo "[end of file]"

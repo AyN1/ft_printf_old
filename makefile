@@ -1,4 +1,4 @@
-all: ft_printf
+all: ft_printf printf
 
 test:
 	./test.sh
