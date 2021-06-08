@@ -1,16 +1,14 @@
-#ifdef TEST
-
-#include <unistd.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {
-	return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 int	ft_putstr(char *str)
 {
 	int	res;
+
 	if (!str)
 		return (0);
 	while (*str)
@@ -18,16 +16,8 @@ int	ft_putstr(char *str)
 		res += ft_putchar(*str);
 		str++;
 	}
+	return (0);
 }
-
-typedef struct	s_args
-{
-	int	c;
-	int	width;
-	int	has_width;
-	int	precision;
-	int	has_precision;
-}				t_args;
 
 int 	ft_isdigit(char c)
 {
@@ -36,17 +26,17 @@ int 	ft_isdigit(char c)
 
 int	ft_isspace(char c)
 {
-	return (c >= 9 && c <= 13)  || (c == 32);
+	return ((c >= 9 && c <= 13) || (c == 32));
 }
 
 long long	ft_atoi(char *str)
 {
-	long long 	res;
+	long long	res;
 	long long	max;
-	int		sign;
+	int			sign;
 
 	max = 0x7fffffffffffffff;
-	while  (ft_isspace(*str))
+	while (ft_isspace(*str))
 		str++;
 	sign = 1;
 	if (*str == '-' || *str == '+')
@@ -55,20 +45,15 @@ long long	ft_atoi(char *str)
 		str++;
 	}
 	printf("sign = %d\n", sign);
-//	printf("res: %lld\n", res);
 	res = 0;
 	while (ft_isdigit(*str))
 	{
 		if (res < max - (*str - '0') / 10)
 			res = 10 * res + (*str - '0');
 		else
-		{
 			res = (sign == -1) ? (max + 1) : max;
-			printf("else\n");
-		}
-	str++;
+		str++;
 	}
-//	printf("res: %lld\n", res);
 	return (res * sign);
 }
 
@@ -81,12 +66,10 @@ void	initialize_args(t_args *args)
 	args->has_precision = 0;
 }
 
-
 char	*read_args(t_args *args, char *itr)
 {
 	if (!itr || *itr == '%')
 		return (itr);
-
 	while (*itr)
 	{
 		initialize_args(args);
@@ -107,7 +90,7 @@ char	*read_args(t_args *args, char *itr)
 int	ft_printf(const char *format, ...)
 {
 	char	*itr;
-	int	res;
+	int		res;
 	t_args	args;
 
 	itr = (char *)format;
@@ -118,44 +101,10 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*itr == '%')
 		{
-			continue;
+			continue ;
 		}
-		res +=  ft_putchar(*itr);
+		res += ft_putchar(*itr);
 		itr++;
 	}
 	return (res);
 }
-
-#include <stdlib.h>
-
-#ifdef FT_PRINTF
-#define F(...) \
-res = ft_printf(__VA_ARGS__);
-#else
-#define F(...) \
-res = printf(__VA_ARGS__);
-#endif
-
-
-int	main(void)
-{
-	int	res;
-	int	number = 5;
-	int	i = '0';
-	long long max = 0x7fffffffffffffff;
-
-	F("hoge\n");
-	printf("%lld\n", ft_atoi("-922807"));
-//	printf("%lld\n", ft_atoi("-92233720368547758078"));
-	printf("\n");
-//	printf("%lld\n", atoll("-9223372036854775807z"));
-//	printf("%lld\n", atoll("-9223372036854775808"));
-
-//	while (i <= '9')
-//	{
-//		printf("test: c = %c, result: %lld\n", i, max - (i - '0') / 10);
-//		++i;
-//	}
-	return (0);
-}
-#endif
