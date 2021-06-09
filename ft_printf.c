@@ -1,34 +1,5 @@
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-int	ft_putstr(char *str)
-{
-	int	res;
-
-	if (!str)
-		return (0);
-	while (*str)
-	{
-		res += ft_putchar(*str);
-		str++;
-	}
-	return (0);
-}
-
-int 	ft_isdigit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-int	ft_isspace(char c)
-{
-	return ((c >= 9 && c <= 13) || (c == 32));
-}
-
 long long	ft_atoi(char *str)
 {
 	long long	res;
@@ -36,7 +7,7 @@ long long	ft_atoi(char *str)
 	int			sign;
 
 	max = 0x7fffffffffffffff;
-	while (ft_isspace(*str))
+	while (ft_iswhitespace(*str))
 		str++;
 	sign = 1;
 	if (*str == '-' || *str == '+')

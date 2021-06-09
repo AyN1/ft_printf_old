@@ -16,8 +16,6 @@ int	main(void)
 	int	i = '0';
 	long long max = 0x7fffffffffffffff;
 
-	F("hoge number: %d\n", number);
-	// printf("%lld\n", ft_atoi("-922807"));
-	// printf("\n");
+	F("hoge number: \n", number);
 	return (0);
 }

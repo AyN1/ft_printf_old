@@ -8,7 +8,7 @@
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_isdigit(char c);
-int	ft_isspace(char c);
+int	ft_iswhitespace(char c);
 long long	ft_atoi(char *str);
 
 typedef struct	s_args
