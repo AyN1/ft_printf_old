@@ -16,6 +16,6 @@ int	main(void)
 	int	i = '0';
 	long long max = 0x7fffffffffffffff;
 
-	F("hoge number: \n", number);
+	F("hoge number: %d\n" number);
 	return (0);
 }
