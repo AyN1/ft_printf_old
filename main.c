@@ -1,4 +1,6 @@
 #include "ft_printf.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifdef FT_PRINTF
 #define F(...) \
@@ -13,14 +15,13 @@ int	main(void)
 {
 	int	res;
 	int	number = 5;
-	int	i = '0';
-	long long max = 0x7fffffffffffffff;
 
-	F("hoge number: %d\n", number);
-	printf("digits: %d\n", ft_get_digits(155));
-	printf("digits: %d\n", ft_get_digits(-155));
-	printf("digits: %d\n", ft_get_digits(123456));
-	printf("digits: %d\n", ft_get_digits(-2147483648));
-	printf("digits: %d\n", ft_get_digits(2147483647));
+	F("ayn1\n");
+	F("[%s]\n", "ayn1");
+	F("[%10.5s]\n", "ayn1");
+	F("[%10.2s]\n", "ayn1");
+	F("[%3.2s]\n", "ayn1");
+	F("[%3.10s]\n", "ayn1");
+	F("[%10.0s]\n", "ayn1");
 	return (0);
 }

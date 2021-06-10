@@ -2,8 +2,7 @@
 # define FT_PRINTF_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
+# include <stdarg.h>
 
 int		ft_putchar(char c);
 int		ft_putstr(char *str);
@@ -11,6 +10,8 @@ int		ft_isdigit(char c);
 int		ft_iswhitespace(char c);
 long	ft_atol(const char *str);
 int		ft_atoi(const char *str);
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
 
 typedef struct s_args
 {
