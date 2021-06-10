@@ -1,17 +1,18 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
 
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_isdigit(char c);
-int	ft_iswhitespace(char c);
-long long	ft_atoi(char *str);
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_isdigit(char c);
+int		ft_iswhitespace(char c);
+long	ft_atol(const char *str);
+int		ft_atoi(const char *str);
 
-typedef struct	s_args
+typedef struct s_args
 {
 	int	c;
 	int	width;
@@ -20,8 +21,9 @@ typedef struct	s_args
 	int	has_precision;
 }				t_args;
 
+int		ft_get_digits(int d);
 void	initialize_args(t_args *args);
 char	*read_args(t_args *args, char *itr);
-int	ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 
 #endif

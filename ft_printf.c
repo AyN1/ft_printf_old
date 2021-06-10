@@ -1,5 +1,27 @@
 #include "ft_printf.h"
 
+int		ft_get_digits(int d)
+{
+	int	digits;
+
+	if (d == -2147483648)
+		return (11);
+
+	digits = 0;
+	if (d < 0)
+	{
+		digits++;
+		d *= -1;
+	}
+	while (d / 10)
+	{
+		digits++;
+		d /= 10;
+	}
+	digits++;
+	return (digits);
+}
+
 void	initialize_args(t_args *args)
 {
 	args->c = 0;

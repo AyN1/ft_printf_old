@@ -16,6 +16,11 @@ int	main(void)
 	int	i = '0';
 	long long max = 0x7fffffffffffffff;
 
-	F("hoge number: %d\n" number);
+	F("hoge number: %d\n", number);
+	printf("digits: %d\n", ft_get_digits(155));
+	printf("digits: %d\n", ft_get_digits(-155));
+	printf("digits: %d\n", ft_get_digits(123456));
+	printf("digits: %d\n", ft_get_digits(-2147483648));
+	printf("digits: %d\n", ft_get_digits(2147483647));
 	return (0);
 }
