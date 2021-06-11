@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-#define CONV "dxs"
+#define CONV "sdxc"
 
 int	ft_putstrl(char *str, int len)
 {
@@ -235,6 +235,29 @@ int ft_put_x(t_args *args, va_list ap)
 	return (res + ft_putx(d, padding));
 }
 
+int	ft_putc(int c)
+{
+	int	res;
+
+	res = 0;
+	res += ft_putchar(c);
+	return (res);
+}
+
+int ft_put_c(t_args *args, va_list ap)
+{
+	int	d;
+	int	len;
+	int	res;
+
+	d = va_arg(ap, int);
+	len = 1;
+	res = 0;
+	while ((args->width-- > len))
+		res += ft_putchar(' ');
+	return (res + ft_putc(d));
+}
+
 int	ft_put_conv(t_args *args, va_list ap)
 {
 	if(args->c == 's')
@@ -243,31 +266,29 @@ int	ft_put_conv(t_args *args, va_list ap)
 		return (ft_put_d(args, ap));
 	else if (args->c == 'x')
 		return (ft_put_x(args, ap));
+	else if (args->c == 'c')
+		return (ft_put_c(args, ap));
 	return (0);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	char	*itr;
 	int		res;
 	t_args	args;
 	va_list	ap;
 
-	itr = (char *)format;
-	if (!itr)
-		return (0);
 	res = 0;
 	va_start(ap, format);
-	while (*itr)
+	while (*format)
 	{
-		if (*itr == '%')
+		if (*format == '%')
 		{
-			itr = read_args(&args, itr);
+			format = read_args(&args, (char*)format);
 			res += ft_put_conv(&args, ap);
 			continue ;
 		}
-		res += ft_putchar(*itr);
-		itr++;
+		res += ft_putchar(*format);
+		format++;
 	}
 	va_end(ap);
 	return (res);
