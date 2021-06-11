@@ -121,6 +121,7 @@ int	ft_put_s(t_args *args, va_list ap)
 		putlen = (len > precision) ? precision : len;
 	else
 		putlen = len;
+	res = 0;
 	while ((width - putlen) > 0)
 	{
 		res += ft_putchar(' ');

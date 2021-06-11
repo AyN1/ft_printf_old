@@ -4,16 +4,19 @@
 
 #ifdef FT_PRINTF
 #define F(...) \
-res = ft_printf(__VA_ARGS__);
+res = ft_printf(__VA_ARGS__); \
+printf("res: %d\n", res);
 #else
 #define F(...) \
-res = printf(__VA_ARGS__);
+res = printf(__VA_ARGS__); \
+printf("res: %d\n", res);
 #endif
 
 
 int	main(void)
 {
 	int	res;
+	setvbuf(stdout, 0, _IONBF, 0);
 	int	number = 5;
 
 	F("ayn1\n");
