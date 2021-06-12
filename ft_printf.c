@@ -60,6 +60,7 @@ void	initialize_args(t_args *args)
 	args->has_width = 0;
 	args->precision = 0;
 	args->has_precision = 0;
+	args->is_negative = 0;
 }
 
 char	*read_args(t_args *args, char *itr)
@@ -70,6 +71,11 @@ char	*read_args(t_args *args, char *itr)
 	while (*itr)
 	{
 		initialize_args(args);
+		if (*itr == '-')
+		{
+			args->is_negative = 1;
+			itr++;
+		}
 		// width
 		if (ft_isdigit(*itr))
 		{
@@ -132,6 +138,22 @@ int	ft_put_s(t_args *args, va_list ap)
 
 #include <stdio.h>
 
+int ft_putx(unsigned int ud, int padding)
+{
+	int	res;
+
+	res = 0;
+	while (padding-- > 0)
+		res += ft_putchar('0');
+	if (ud / 16)
+		res += ft_putx(ud / 16, padding);
+	if ((ud % 16) >= 10)
+		res += ft_putchar((ud % 16) - 10 + 'a');
+	else
+		res += ft_putchar((ud % 16) + '0');
+	return (res);
+}
+
 int	ft_puti(int d, int padding)
 {
 	int res;
@@ -158,22 +180,6 @@ int	ft_puti(int d, int padding)
 	return (res);
 }
 
-int ft_putx(unsigned int ud, int padding)
-{
-	int	res;
-
-	res = 0;
-	while (padding-- > 0)
-		res += ft_putchar('0');
-	if (ud / 16)
-		res += ft_putx(ud / 16, padding);
-	if ((ud % 16) >= 10)
-		res += ft_putchar((ud % 16) - 10 + 'a');
-	else
-		res += ft_putchar((ud % 16) + '0');
-	return (res);
-}
-
 int	ft_put_d(t_args *args, va_list ap)
 {
 	int	width;
@@ -188,6 +194,13 @@ int	ft_put_d(t_args *args, va_list ap)
 	precision = args->has_precision ? args->precision : 0;
 	d = va_arg(ap, int);
 	len = ft_get_digits(d);
+	if (args->is_negative == 1 && d < 0)
+	{
+		res += ft_puti(d, padding);
+		while (width > len++)
+			res += ft_putchar(' ');
+		 return(res);
+	}
 	if (args->has_precision && args->precision == 0 && d == 0)
 		len = 0;
 	if (d < 0)
@@ -196,10 +209,10 @@ int	ft_put_d(t_args *args, va_list ap)
 		padding = (len < precision) ? precision - len : 0;
 	putlen = len + padding;
 	res = 0;
-	while ((width - putlen) > 0)
+	// printf("len = %d", len);
+	while (width-- > len)
 	{
 		res += ft_putchar(' ');
-		width--;
 	}
 	if (args->has_precision && args->precision == 0 && d == 0)
 		return (res);

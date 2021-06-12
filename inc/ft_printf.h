@@ -20,6 +20,7 @@ typedef struct s_args
 	int	has_width;
 	int	precision;
 	int	has_precision;
+	int	is_negative;
 }				t_args;
 
 int		ft_get_digits(int d);

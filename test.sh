@@ -1,4 +1,5 @@
-make re
+make clean
+make
 ./ft_printf > ft_printf.txt
 ./printf > printf.txt
 diff -y -s -a --suppress-common-lines ft_printf.txt printf.txt
