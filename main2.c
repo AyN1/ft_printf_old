@@ -138,8 +138,8 @@ int main()
 	// printf("\n%d\n%d\n", count, count1);
 
 	printf("\n**8**\n");
-	count = printf("sim%-5dsim\n", d);
-    count1 = ft_printf("sim%-5dsim\n", d);
+	count = printf("sim%-5dsim\n", 7);
+    count1 = ft_printf("sim%-5dsim\n",7);
 	printf("\n%d\n%d\n", count, count1);
 
 	// printf("\n**9**\n");

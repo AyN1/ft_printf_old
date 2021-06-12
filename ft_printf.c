@@ -194,7 +194,7 @@ int	ft_put_d(t_args *args, va_list ap)
 	precision = args->has_precision ? args->precision : 0;
 	d = va_arg(ap, int);
 	len = ft_get_digits(d);
-	if (args->is_negative == 1 && d < 0)
+	if (args->is_negative == 1)
 	{
 		res += ft_puti(d, padding);
 		while (width > len++)
