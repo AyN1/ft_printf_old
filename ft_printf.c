@@ -211,9 +211,7 @@ int	ft_put_d(t_args *args, va_list ap)
 	res = 0;
 	// printf("len = %d", len);
 	while ((width-- - putlen) > 0)
-	{
 		res += ft_putchar(' ');
-	}
 	if (args->has_precision && args->precision == 0 && d == 0)
 		return (res);
 	return (res + ft_puti(d, padding));
