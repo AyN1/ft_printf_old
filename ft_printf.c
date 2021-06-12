@@ -210,7 +210,7 @@ int	ft_put_d(t_args *args, va_list ap)
 	putlen = len + padding;
 	res = 0;
 	// printf("len = %d", len);
-	while (width-- > len)
+	while ((width-- - putlen) > 0)
 	{
 		res += ft_putchar(' ');
 	}
