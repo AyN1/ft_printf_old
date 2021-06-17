@@ -138,9 +138,15 @@ int main()
 	// printf("\n%d\n%d\n", count, count1);
 
 	printf("\n**8**\n");
-	count = printf("sim%-5dsim\n", 7);
-    count1 = ft_printf("sim%-5dsim\n",7);
+	count = printf("sim%-7dsim\n", d);
+    count1 = ft_printf("sim%-7dsim\n", d);
 	printf("\n%d\n%d\n", count, count1);
+
+	// printf("\n**8.1**\n");
+	// count = printf("sim%-7dsim\n", 43);
+    // count1 = ft_printf("sim%-7dsim\n", 43);
+	// printf("\n%d\n%d\n", count, count1);
+
 
 	// printf("\n**9**\n");
 	// count = printf("sim%-1dsim\n", d);
@@ -152,10 +158,10 @@ int main()
     // count1 = ft_printf("sim%-10.1dsim\n", d);
 	// printf("\n%d\n%d\n", count, count1);
 
-	// printf("\n**11**\n");
-	// count = printf("sim%-10.5dsim\n", d);
-    // count1 = ft_printf("sim%-10.5dsim\n", d);
-	// printf("\n%d\n%d\n", count, count1);
+	printf("\n**11**\n");
+	count = printf("sim%-10.5dsim\n", d);
+    count1 = ft_printf("sim%-10.5dsim\n", d);
+	printf("\n%d\n%d\n", count, count1);
 
 	// printf("\n**12**\n");
 	// count = printf("sim%10.5dsim\n", d);
